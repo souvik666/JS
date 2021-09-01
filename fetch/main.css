@@ -1,0 +1,74 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+body {
+  background-color: black;
+}
+#recomded {
+  height: 30px;
+  width: 109px;
+  background-color: rgb(16, 49, 9);
+  text-align: center;
+  font-size: small;
+  padding-top: 0.3%;
+  font-weight: bolder;
+  color: aliceblue;
+  position: absolute;
+  left: 5.5%;
+  display: none;
+}
+
+#moviecont {
+  display: grid;
+  width: 90%;
+  margin: auto;
+  grid-template-columns: auto 1fr;
+  grid-gap: 4%;
+}
+
+#moviecont div {
+  margin-top: 2%;
+  font-size: large;
+  font-weight: bold;
+  color: white;
+}
+#searchcont {
+  text-align: center;
+}
+#searchcont input {
+  height: 30px;
+  margin-top: 2%;
+  border: 0px;
+  border-radius: 10px;
+}
+
+#searchcont button {
+  height: 30px;
+  border: 0px;
+  border-radius: 10px;
+  width: 50px;
+  background-color: rgb(71, 94, 26);
+  color: white;
+}
+
+#err {
+  position: absolute;
+  height: 250px;
+  width: 250px;
+  left: 40%;
+  display: none;
+}
+
+#err img {
+  height: 100%;
+  width: 100%;
+}
+h1 {
+  color: white;
+  text-align: center;
+}
+h4 {
+  color: white;
+  text-align: center;
+}
