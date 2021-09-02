@@ -1,0 +1,58 @@
+<head>
+    <style>
+        nav {
+            height: 50px;
+            width: 100%;
+            background-color: rgb(37, 37, 37);
+            text-align: center;
+        }
+
+        nav input {
+            margin-top: 2%;
+        }
+    </style>
+</head>
+<nav>
+
+    <input type="text" id="input">
+    <button id="btn" onclick="searfunction()">Search</button>
+</nav>
+
+<body>
+
+    <div id="videoconttrending">
+
+    </div>
+    <div id="searchres"></div>
+    <div id="search" onclick="searfunction()"></div>
+</body>
+<script>
+    async function youtube() {
+        let maindiv = document.getElementById(`videoconttrending`)
+        let res = await fetch(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet&maxResults=20&type=video&chart=mostPopular&regionCode=in&key=AIzaSyBUDRnmL7hmXiGRRohZ91oBje8sJ-i4APc`)
+        let data = await res.json()
+
+        for (let { id } of data.items) {
+            let videoframe = document.createElement("iframe")
+            videoframe.src = `https://www.youtube.com/embed/${id}`
+            videoframe.allow = "fullscreen"
+            maindiv.append(videoframe)
+        }
+    }
+    youtube()
+
+    async function searfunction() {
+        document.getElementById(`videoconttrending`).style.display = "none"
+        let val = document.getElementById("input").value
+        let maindiv = document.getElementById(`searchres`)
+        let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?q=${val}&maxResults=20&type=video&key=AIzaSyBUDRnmL7hmXiGRRohZ91oBje8sJ-i4APc`)
+        let data = await res.json()
+
+        for (let { id: { videoId } } of data.items) {
+            let videoframe = document.createElement("iframe")
+            videoframe.src = `https://www.youtube.com/embed/${videoId}`
+            videoframe.allow = "fullscreen"
+            maindiv.append(videoframe)
+        }
+    }
+</script>
