@@ -28,7 +28,7 @@ function appnedSuggestion(el) {
 
 async function main() {
   let name = document.getElementById("input").value;
-  if (name.length < 2) {
+  if (name.length < 1) {
     return false;
   }
   let res = await searchNames(name);
@@ -38,7 +38,7 @@ async function main() {
 
 function debounce(func, delay) {
   let name = document.getElementById("input").value;
-  if (name.length <= 2) {
+  if (name.length < 1) {
     return false;
   }
   if (timerId) {
