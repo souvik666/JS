@@ -1,0 +1,2 @@
+nav("mynav");
+nav.routing();
