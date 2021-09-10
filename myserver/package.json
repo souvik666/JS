@@ -1,0 +1,29 @@
+{
+  "name": "js-mock-apis",
+  "version": "1.0.0",
+  "description": "A simple REST and GraphQL mock API's project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "mock:api": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vcpablo/js-mock-apis.git"
+  },
+  "keywords": [
+    "mock-api",
+    "javascript",
+    "graphql",
+    "rest"
+  ],
+  "author": "Pablo Veiga",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vcpablo/js-mock-apis/issues"
+  },
+  "homepage": "https://github.com/vcpablo/js-mock-apis#readme",
+  "devDependencies": {
+    "json-server": "^0.16.3"
+  }
+}

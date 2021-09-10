@@ -1,0 +1,63 @@
+{
+  "users": [],
+  "products": [
+    {
+      "active": false,
+      "id": 1
+    },
+    {
+      "id": 2,
+      "name": "Hamburger",
+      "age": 7,
+      "active": true
+    },
+    {
+      "id": 3,
+      "name": "Ice Cream",
+      "age": 2.5,
+      "active": false
+    },
+    {
+      "id": 4,
+      "name": "Chocolate",
+      "price": 6,
+      "active": true
+    },
+    {
+      "id": "5",
+      "name": "Kit kat",
+      "price": "6",
+      "active": "false"
+    },
+    {
+      "id": "90",
+      "name": "Kit kat",
+      "price": "6",
+      "active": "false"
+    },
+    {
+      "id": "6",
+      "name": "fruti",
+      "price": "6",
+      "active": "false"
+    },
+    {
+      "id": "7",
+      "name": "Fanta",
+      "price": "6",
+      "active": "false"
+    },
+    {
+      "id": "99",
+      "name": "cocaola",
+      "price": "56",
+      "active": "true"
+    },
+    {
+      "name": "cocaola",
+      "price": "156",
+      "active": "false",
+      "id": "111"
+    }
+  ]
+}

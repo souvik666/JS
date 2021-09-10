@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    //This is my Get request
+    const getUser = async () => {
+        let res = await fetch(`http://localhost:3000/api/users`)
+        let data = await res.json()
+        console.log(data)
+    }
+    //getUser()
+
+    //Demostraion of POST request
+    const postPrroduct = async () => {
+        fetch(`http://localhost:3000/api/products`, {
+            method: "POST",
+            body: JSON.stringify({
+                "id": "111",
+                "name": "cocaola",
+                "price": "56",
+                "active": "true"
+            }),
+            headers: {
+                "Content-Type": "application/json",
+            },
+
+        }).then((res) => {
+            return (res.json())
+        }).then((res) => {
+            console.log(res)
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
+    //postPrroduct()
+
+    //change ProDuct
+    const changeProduct = async () => {
+        fetch(`http://localhost:3000/api/products/111`, {
+            method: "PUT",
+            body: JSON.stringify({
+                "name": "cocaola",
+                "price": "156",
+                "active": "false"
+            }),
+            headers: { "Content-Type": "application/json" }
+        }).then((res) => {
+            return (res.json())
+        }).then((res) => {
+            console.log(res)
+        })
+            .catch((err) => {
+                console.log(err)
+            })
+
+    }
+   // changeProduct()
+
+    //deleate users
+    const deleteProduct = async () => {
+
+        let res = await fetch(`http://localhost:3000/api/users/3`, {
+            method: "DELETE"
+        })
+        let data = await res.json()
+        console.log(data)
+
+    }
+    //deleteProduct()
+
+</script>
