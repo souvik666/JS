@@ -116,7 +116,10 @@ function validate(data) {
                 if (!req.query[items]) {
                     res.send(`please enter the ${items}`)
                 } else {
-                    res.send(req.query[items])
+                    let nameofrequerer = req.query[items]
+
+                    let tmp = { nameofrequerer, db }
+                    res.send(tmp)
                 }
             }
         })

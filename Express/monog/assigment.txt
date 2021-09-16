@@ -1,0 +1,151 @@
+//sep 16 2021 mongodb I
+
+//to get dbs details
+
+> show dbs
+o/p-->
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+
+//use any db
+> use config
+o/p-->
+switched to db config
+
+//create any db
+
+in this case we just need to type use <the name of db that we want to create>
+ans the rest will be handeled by mongo
+
+example -->
+
+> use assignment //This will create a db called assigment
+o/p-->
+switched to db assignment
+
+//if we add collection inside our created database then
+> db.users.insert({first_name:"souvik", last_name:"dutta", email:"example.com", "gender":"Male", "ip":"",age:"23"})
+
+(the insert function will only take one value as agrument if we want add multiple values then we need to use insertMany function)
+the above command will create a collection called as users and also it will add the field inside the collections 
+o/p-->
+WriteResult({ "nInserted" : 1 })
+
+//insertMany( adding multiple fileds at one time)
+
+> db.users.insertMany([{first_name:"souvik", last_name:"dutta", email:"example.com", "gender":"Male", "ip":"",age:"23"},{first_name:"souvik", last_name:"dutta", email:"example.com", "gender":"Male", "ip":"",age:"23"},{first_name:"souvik", last_name:"dutta", email:"example.com", "gender":"Male", "ip":"",age:"23"},{first_name:"souvik", last_name:"dutta", email:"example.com", "gender":"Male", "ip":"",age:"23"},{first_name:"souvik", last_name:"dutta", email:"example.com", "gender":"Male", "ip":"",age:"23"}])
+
+0/p -->
+	"writeErrors" : [ ],
+	"writeConcernErrors" : [ ],
+	"nInserted" : 5,
+	"nUpserted" : 0,
+	"nMatched" : 0,
+	"nModified" : 0,
+	"nRemoved" : 0,
+	"upserted" : [ ]
+})
+
+// to see all fileds of colletion 
+
+> db.users.find()
+
+o/p-->
+{ "_id" : ObjectId("61433daf6d438dd3d724eb73"), "first_name" : "souvik", "last_name" : "dutta", "email" : "example.com", "gender" : "Male", "ip" : "", "age" : "23" }
+{ "_id" : ObjectId("61433f3e6d438dd3d724eb74"), "first_name" : "souvik", "last_name" : "dutta", "email" : "example.com", "gender" : "Male", "ip" : "", "age" : "23" }
+{ "_id" : ObjectId("61433f636d438dd3d724eb75"), "first_name" : "souvik", "last_name" : "dutta", "email" : "example.com", "gender" : "Male", "ip" : "", "age" : "23" }
+{ "_id" : ObjectId("61433f636d438dd3d724eb76"), "first_name" : "souvik", "last_name" : "dutta", "email" : "example.com", "gender" : "Male", "ip" : "", "age" : "23" }
+{ "_id" : ObjectId("61433f636d438dd3d724eb77"), "first_name" : "souvik", "last_name" : "dutta", "email" : "example.com", "gender" : "Male", "ip" : "", "age" : "23" }
+{ "_id" : ObjectId("61433f636d438dd3d724eb78"), "first_name" : "souvik", "last_name" : "dutta", "email" : "example.com", "gender" : "Male", "ip" : "", "age" : "23" }
+{ "_id" : ObjectId("61433f636d438dd3d724eb79"), "first_name" : "souvik", "last_name" : "dutta", db.users.insert([{first_name:"souvik", last_name:"dutta", email:"example.com", "gender":"Male", "ip":"",age:"23"}])
+
+//updating the values by updateMany()
+
+> db.users.updateMany({name:"souvik"}, {$set:{age:10}})
+
+o/p-->
+{
+	"_id" : ObjectId("61433daf6d438dd3d724eb73"),
+	"first_name" : "souvik",
+	"last_name" : "dutta",
+	"email" : "example.com",
+	"gender" : "Male",
+	"ip" : "",
+	"age" : 10
+}
+{
+	"_id" : ObjectId("61433f3e6d438dd3d724eb74"),
+	"first_name" : "souvik",
+	"last_name" : "dutta",
+	"email" : "example.com",
+	"gender" : "Male",
+	"ip" : "",
+	"age" : 10
+}
+{
+	"_id" : ObjectId("61433f636d438dd3d724eb75"),
+	"first_name" : "souvik",
+	"last_name" : "dutta",
+	"email" : "example.com",
+	"gender" : "Male",
+	"ip" : "",
+	"age" : 10
+}
+{
+	"_id" : ObjectId("61433f636d438dd3d724eb76"),
+	"first_name" : "souvik",
+	"last_name" : "dutta",
+	"email" : "example.com",
+	"gender" : "Male",
+	"ip" : "",
+	"age" : 10
+}
+{
+	"_id" : ObjectId("61433f636d438dd3d724eb77"),
+	"first_name" : "souvik",
+	"last_name" : "dutta",
+	"email" : "example.com",
+	"gender" : "Male",
+	"ip" : "",
+	"age" : 10
+}
+{
+	"_id" : ObjectId("61433f636d438dd3d724eb78"),
+	"first_name" : "souvik",
+	"last_name" : "dutta",
+	"email" : "example.com",
+	"gender" : "Male",
+	"ip" : "",
+	"age" : 10
+}
+{
+	"_id" : ObjectId("61433f636d438dd3d724eb79"),
+	"first_name" : "souvik",
+	"last_name" : "dutta",
+	"email" : "example.com",
+	"gender" : "Male",
+	"ip" : "",
+	"age" : 10
+}
+
+ 
+
+
+
+
+//to delete the database 
+1st. eneter into the db that we want to del
+> use assignment
+then
+> db.dropDatabase()
+
+0/p-->
+
+{ "ok" : 1 }
+
+
+
+
+
+
