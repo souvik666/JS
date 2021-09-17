@@ -1,0 +1,16 @@
+1.find all movies which are equal to movie_name
+db.movies.find({movie_name: {$eq:"Gitmo"}}).pretty()
+
+2.find all movies which are not equal to movie_name
+db.movies.find({movie_name: {$ne:"Gitmo"}}).pretty()
+
+3.find all movies greater than and greater than equal to a budget
+db.movies.find({budget: {$gt:"$506920.63"}}).pretty()
+
+4.find all movies less than and less than equal to a budget
+db.movies.find({budget: {$lt:"$506920.63"}}).pretty()
+
+5.find all movies that are produced after 2000 with budget greater than 10000
+
+db.movies.find({$and : [{"budget" : {$gt:"$1000"}},{"production_year":{$gt:2000}}]}).pretty()
+
