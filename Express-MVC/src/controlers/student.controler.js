@@ -14,4 +14,10 @@ router.post("/", async (req, res) => {
   res.status(200).send({ createdstudent });
 });
 
+//fetch the student with his personal details who scored the highest mark in the evaluation
+router.get("/high", async (req, res) => {
+  let myRes = await students.find().sort({ score: 1 }).limit(1);
+  res.send(myRes);
+});
+
 module.exports = router;
