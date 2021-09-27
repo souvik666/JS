@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const stundets = require("../models/student.model");
 const evaluationsShema = require("../models/evaluations.model");
 const students = require("../models/student.model");
 
@@ -18,7 +17,7 @@ router.get("", async (req, res) => {
 
 //create evaluation fro specific batch
 router.post("/:batch", async (req, res) => {
- /*  const tmp = await students.updateMany(
+  /*  const tmp = await students.updateMany(
     { current_batch: "web_11" },
     [{ $set: { score: [] } }],
     {
@@ -38,6 +37,10 @@ router.post("/:batch", async (req, res) => {
   res.send(await students.find());
 });
 
-
+//fetch all students who gave a particular evaluation
+router.get("/:evID", async (req, res) => {
+  let student = await students.find({ evaluation: req.params.evID });
+  res.status(200).send({ student });
+});
 
 module.exports = router;
