@@ -14,8 +14,6 @@ router.post("/", async (req, res) => {
   res.status(200).send({ myRes });
 });
 
-module.exports = router;
-
 //find all the jobs that will accept a notice period of 2 months
 router.get("/notice/:pre", async (req, res) => {
   const notice_period = req.params.pre;
@@ -38,7 +36,9 @@ router.get("/:city/:skill", async (req, res) => {
 });
 
 /* find all jobs by sorting the jobs as per their rating. */
-
-router.get("/sort/:indecation", async (req, res)=>{
-    
+router.get("/sort", async (req, res) => {
+  const myres = await jobs.find().sort({ rating: -1 });
+  res.send({ myres });
 });
+
+module.exports = router;
