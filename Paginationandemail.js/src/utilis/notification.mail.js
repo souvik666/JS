@@ -1,9 +1,9 @@
-/* when a user registers all the admins should receive an email stating*/
+/* create endpoint for registering where in the user can register and when he registers we should send him a confirmation email and the contents of that will be */
 
 const nodemailer = require("nodemailer");
 require("dotenv").config();
 
-const sendEmail = async (user,admins) => {
+const sendEmail = async (user, admin) => {
   const transporter = nodemailer.createTransport({
     host: "smtp.ethereal.email",
     port: 587,
@@ -14,9 +14,9 @@ const sendEmail = async (user,admins) => {
   });
   let info = await transporter.sendMail({
     from: process.env.ethereal_email,
-    to:admins,
+    to: admin,
     subject: `${user.first_name} ${user.last_name} has registered with us`,
-    text: `Please welcome ${user.first_name} ${user.last_name}`,
+    text: ` Please welcome ${user.first_name} ${user.last_name}`,
     html: "",
   });
   console.log("Message sent: %s", info.messageId);

@@ -12,7 +12,7 @@ router.post("/", async (req, res) => {
   let user = req.body;
   const myusers = await userModle.create(req.body);
   email(user);
-  alertAdmins()
+  alertAdmins(user)
   console.log(myusers);
 });
 
