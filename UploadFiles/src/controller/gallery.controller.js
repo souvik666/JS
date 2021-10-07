@@ -4,6 +4,11 @@ const gallery = require("../models/gallery.model");
 const upload = require("../utilis/file.upload");
 const deleteMe = require("../utilis/file.system");
 
+/* get all gallery files */
+router.get("/", async (req, res) => {
+  res.send(await gallery.find());
+});
+
 /* Adding photos to the gallery ( User can upload only 5 photos at a time and in multer.array() there is way to do this) */
 router.post("/:id", upload.any("pictures"), async (req, res) => {
   const filenames = req.files.map((file) => file.originalname);
