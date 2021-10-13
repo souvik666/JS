@@ -1,27 +1,40 @@
+require("dotenv").config();
 const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
-const User = require("../models/user.model");
+const GoogleStrategy = require("passport-google-oauth2").Strategy;
+const { v4: uuidV4 } = require("uuid");
+
+const User = require("../model/user.model");
+
+const { createtoken } = require("../controller/auth.controller");
 
 passport.use(
-  new LocalStrategy(
+  new GoogleStrategy(
     {
-      usernameField: "email",
-      passwordField: "password",
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL: "http://localhost:2345/auth/google/callback",
+      userProfileURL: "https://**www**.googleapis.com/oauth2/v3/userinfo",
+      passReqToCallback: true,
     },
-    function (email, password, done) {
-      User.findOne({ email: email }, async function (err, user) {
-        if (err) {
-          return done(err);
-        }
+    async function (request, accessToken, refreshToken, profile, done) {
+      const email = profile?._json?.email;
+
+      let user;
+      try {
+        user = await User.findOne({ email }).lean().exec();
+
         if (!user) {
-          return done(null, false);
+          user = await User.create({
+            email: email,
+            password: uuidV4(),
+          });
         }
-        const matchPassword = await user.checkPassword(password);
-        if (!matchPassword) {
-          return done(null, false);
-        }
-        return done(null, user);
-      });
+
+        const token = createtoken(user);
+        return done(null, { user, token });
+      } catch (err) {
+        console.log("err", err);
+      }
     }
   )
 );

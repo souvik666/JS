@@ -1,44 +1,42 @@
 const express = require("express");
-const session = require("express-session");
-const User = require("./src/models/user.model");
-const passport = require("./src/config/passport.config");
 const app = express();
-app.use(
-  session({
-    secret: "verygoodsecret",
-    resave: false,
-    saveUninitialized: true,
-  })
+app.use(express.json());
+const { register, login } = require("./src/controller/auth.controller");
+const postsController = require("./src/controller/post.controller");
+const passport = require("./src/config/passport.config");
+
+app.post("/register", register);
+app.post("/login", login);
+app.use("/posts", postsController);
+
+app.use(passport.initialize());
+
+passport.serializeUser(function ({ user, token }, done) {
+  done(null, { user, token });
+});
+
+passport.deserializeUser(function ({ user, token }, done) {
+  done(err, { user, token });
+});
+
+app.get("/auth/google/failure", function (req, res) {
+  return res.send("Something went wrong");
+});
+
+app.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["email", "profile"] })
 );
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-// Passport.js
-app.use(passport.initialize());
-app.use(passport.session());
+app.get(
+  "/auth/google/callback",
+  passport.authenticate("google", {
+    failureRedirect: "/auth/google/failure",
+  }),
+  function (req, res) {
+    const { user, token } = req.user;
+    return res.status(200).json({ user, token });
+  }
+);
 
-passport.serializeUser(function (user, done) {
-  done(null, user);
-});
-
-passport.deserializeUser(function (id, done) {
-  User.findById(id, function (err, user) {
-    done(err, user);
-  });
-});
-
-const connect = require("./src/config/db");
-const userController = require("./src/controllers/register.controller");
-const productController = require("./src/controllers/products.controller");
-app.use("/register", userController);
-
-app.use("/product", productController);
-
-app.post("/login", passport.authenticate("local"), async (req, res) => {
-  res.send(req.user);
-});
-
-app.listen(2345, async (req, res) => {
-  connect();
-  console.log("listening on 2345");
-});
+module.exports = app;

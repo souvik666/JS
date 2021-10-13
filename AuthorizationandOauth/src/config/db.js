@@ -1,11 +1,7 @@
 const mongoose = require("mongoose");
 
-//connection
 const connect = () => {
-  return mongoose.connect("mongodb://127.0.0.1:27017/Oauth", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+  return mongoose.connect("mongodb://127.0.0.1:27017/Authentication");
 };
 
 module.exports = connect;

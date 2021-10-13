@@ -1,21 +1,23 @@
 {
-  "name": "authorizationandoauth",
+  "name": "authentication",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon index.js",
+    "server": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "06xx97",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "express-session": "^1.17.2",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.10",
     "passport": "^0.5.0",
-    "passport-local": "^1.0.0"
+    "passport-google-oauth2": "^0.2.0",
+    "uuid": "^8.3.2"
   }
 }
